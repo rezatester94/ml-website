@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Carousel</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Carousel Container */
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      background-color: transparent;
+      margin: 0 auto;
+    }
+
+    @media screen and (min-width: 768px) {
+      .carousel {
+        width: 60%;
+        max-width: 800px;
+        height: 50vh;
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      .carousel {
+        height: 30vh;
+      }
+    }
+
+    /* Carousel Inner */
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 500%;
+      height: 100%;
+    }
+
+    .carousel-slide {
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 46px 0 46px;
+      margin-top: 0px;
+      box-sizing: border-box;
+      height: 100%;
+    }
+
+    /* Heading Style */
+    .heading {
+      font-size: 16px;
+      font-weight: bold;
+      font-style: italic;
+      margin: 0px;
+    }
+
+    /* Paragraph Style */
+    .paragraph {
+      font-size: 16px;
+      font-style: italic;
+    }
+
+    /* Navigation Buttons */
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #92681b;
+      color: white;
+      font-size: 18px;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px; /* Rounded corners */
+      transition: all 0.3s ease; /* Smooth transition for the hover effect */
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    /* Hover Effect for Buttons */
+    .prev:hover, .next:hover {
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+    }
+
+    /* Hide the indicator on mobile devices */
+    @media screen and (max-width: 767px) {
+      .indicator-container {
+        display: none;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Carousel Container -->
+  <div class="carousel">
+    <div class="carousel-inner">
+      <!-- Slide 1 -->
+      <div class="carousel-slide">
+        <h3 class="heading">in Qatar</h3>
+        <p class="paragraph">I have been taking Arabic classes for the past two years, and my experience has been truly rewarding...</p>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide">
+        <h3 class="heading">in Saudi Arabia</h3>
+        <p class="paragraph">Our courses are going great. I really enjoy the speaking classes. The grammar classes are informative and in depth. Book reading sessions are also great learning platform...</p>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide">
+        <h3 class="heading">in South Africa</h3>
+        <p class="paragraph">The Muslim Grammar Course 100B has been well worth the educational investment in the study of Arabic language leading to the better understanding of ...</p>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="carousel-slide">
+        <h3 class="heading">in United Kingdom</h3>
+        <p class="paragraph">Brother Reza has been teaching me for a year now, At the start of our class, I couldn't read the Arabic words properly, brother Reza helped me within a year to be able to read the whole Qur'an...</p>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="carousel-slide">
+        <h3 class="heading">in United States</h3>
+        <p class="paragraph">I have been a student of Br. Reza's Nahw classes since quite some time. I have personally gained a lot from his classes, with basic concepts all cleared up. He is an excellent teacher...</p>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+
+    function moveSlide(step) {
+      currentSlide += step;
+      if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+      } else if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+      }
+
+      const newTransformValue = -currentSlide * 100 / totalSlides + '%';
+      document.querySelector('.carousel-inner').style.transform = `translateX(${newTransformValue})`;
+    }
+  </script>
+
+</body>
+</html>
